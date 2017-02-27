@@ -4,17 +4,35 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { SearchComponent } from './search/search.component';
+import {Routes, RouterModule} from "@angular/router";
+import {SPOTIFY_PROVIDERS} from "./services/SpotifyService";
+import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from "@angular/common";
+
+const routes: Routes = [
+  { path: '', redirectTo: 'search', pathMatch: 'full' },
+  { path: 'search', component: SearchComponent },
+  // { path: 'artists/:id', component: ArtistComponent },
+  // { path: 'tracks/:id', component: TrackComponent },
+  // { path: 'albums/:id', component: AlbumComponent },
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes) // <-- routes
   ],
-  providers: [],
+  providers: [
+    SPOTIFY_PROVIDERS,
+    {provide: APP_BASE_HREF, useValue: '/'},
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
