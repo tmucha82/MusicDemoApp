@@ -12,6 +12,7 @@ import {TrackComponent} from './track/track.component';
 import {ArtistComponent} from './artist/artist.component';
 import {AlbumComponent} from './album/album.component';
 import {AUTH_PROVIDERS} from "./services/AuthService";
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'search', pathMatch: 'full'},
@@ -27,7 +28,8 @@ const routes: Routes = [
     SearchComponent,
     TrackComponent,
     ArtistComponent,
-    AlbumComponent
+    AlbumComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
